@@ -36,5 +36,5 @@ class DataToDecisionTree:
         else:
             totaldata=totaldata+1
     print total
-    
     print totaldata
+    print(total/totaldata)
