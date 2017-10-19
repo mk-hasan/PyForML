@@ -12,5 +12,5 @@ def dTree(x):
             decision = 'less risk'
     return decision
 
-t=dTree({'smoker':'yes','age':31,'diet':'good'})
-print t 
+test=dTree({'smoker':'yes','age':31,'diet':'good'})
+print test
