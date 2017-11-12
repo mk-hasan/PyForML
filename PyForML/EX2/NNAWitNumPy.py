@@ -56,3 +56,21 @@ batch_py= pybatch(U,X,Y)
 print "Results are equal?"
 print batch_num == batch_py
 
+
+#calculating new npbatch with numpy instead of pybatch
+
+def npbatch(U,X,Y):
+    U = np.array(U)
+    X = np.array(X)
+    Y = np.array(Y)
+    U = np.array(np.repeat(U[:,:,None],X.shape[0],axis=2))
+    X = np.array(np.repeat(X[:,:,None],U.shape[0],axis=2))
+    X = X.swapaxes(0,2)
+    S = np.sum((U-X)**2,axis=1)
+    M = S.argmin(1)
+    return Y[M]
+
+U,X,Y = data.toy(20,100,50)
+batch_num = npbatch(U,X,Y)
+print 'Results are equal?'
+print  batch_num == batch_py
