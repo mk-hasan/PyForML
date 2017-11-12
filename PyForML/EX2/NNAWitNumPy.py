@@ -41,4 +41,18 @@ print "Result are equal??"
 
 print batch_num == batch_py
 
+#calculating new nearest with numpy instead of for loop
+
+def npnearest(u,X,Y,distance=npdistance):
+    X=np.array(X)
+    Y=np.array(Y)
+    u=np.array(u)
+    ind = np.argmin(np.sum((u-X)**2,axis=1))
+    return Y[ind]
+
+U,X,Y= data.toy(20,100,50)
+batch_num= pybatch(U,X,Y,nearest=npnearest)
+batch_py= pybatch(U,X,Y)
+print "Results are equal?"
+print batch_num == batch_py
 
