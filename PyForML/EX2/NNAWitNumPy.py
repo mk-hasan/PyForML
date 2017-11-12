@@ -40,3 +40,5 @@ batch_py = pybatch(U,X,Y)
 print "Result are equal??"
 
 print batch_num == batch_py
+
+
