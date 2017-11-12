@@ -52,3 +52,30 @@ plt.plot(dlist2,tlist1,'-o',label='normal')
 plt.plot(dlist2,tlist2,'-o',label='npdistance')
 plt.legend(loc='upper left')
 plt.xscale('log');plt.yscale('log');plt.xlabel('d');plt.ylabel('time');plt.grid(True)
+
+#Testing the performance of pybatch with npnearest and npdistance method
+
+dlist3 = [1, 2, 5, 10, 20, 50, 100, 200, 500, 1000]
+
+
+tlist1 =[]
+tlist2=[]
+
+for d in dlist3:
+    U,X,Y = data.toy(100,100,d)
+    a = time.clock()
+    pybatch(U,X,Y,distance = npdistance)
+    b=time.clock()
+    pybatch(U,X,Y,nearest=npnearest)
+    
+    c=time.clock()
+    tlist1+=[b-a]
+    tlist2+=[c-b]
+    
+#plot the result in a graph
+
+plt.figure(figsize=(5,3))
+plt.plot(dlist2,tlist1,'-o',label='npdistance')
+plt.plot(dlist2,tlist2,'-o',label='npnearest')
+plt.legend(loc='lower left')
+plt.xscale('log');plt.yscale('log');plt.xlabel('d');plt.ylabel('time');plt.grid(True)
